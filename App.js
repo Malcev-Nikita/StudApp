@@ -6,7 +6,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from './src/panels/Home';
 import News from './src/panels/News';
 import Settings from './src/panels/Settings';
-import { View } from 'react-native';
 
 const homeName = "Домой";
 const newsName = "Новости";
