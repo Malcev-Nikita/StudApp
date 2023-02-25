@@ -1,11 +1,15 @@
 import { NavigationContainer } from '@react-navigation/native';
-import Icons from 'react-native-vector-icons/Feather';
+import Feather from 'react-native-vector-icons/Feather';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Home from './src/panels/Home';
+import News from './src/panels/News';
 import Settings from './src/panels/Settings';
+import { View } from 'react-native';
 
 const homeName = "Домой";
+const newsName = "Новости";
 const settingsName = "Настройки";
 
 const Tab = createBottomTabNavigator();
@@ -31,13 +35,19 @@ export default function App() {
           <Tab.Screen name={homeName} component={Home} options={{
             headerShown: false, 
             tabBarIcon: ({ color }) => (
-              <Icons name="home" color={color} size={26} />
+              <Feather name="home" color={color} size={26} />
+            ) }} 
+          />
+          <Tab.Screen name={newsName} component={News} options={{
+            headerShown: false, 
+            tabBarIcon: ({ color }) => (
+              <FontAwesome name="newspaper-o" color={color} size={26} />
             ) }} 
           />
           <Tab.Screen name={settingsName} component={Settings} options={{
             headerShown: false, 
             tabBarIcon: ({ color }) => (
-              <Icons name="settings" color={color} size={26} />
+              <Feather name="settings" color={color} size={26} />
             ) }} 
           />
       </Tab.Navigator>
