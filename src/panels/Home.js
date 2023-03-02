@@ -12,41 +12,73 @@ class Home extends React.Component {
     super(props)
 
     this.state = {
-      error: null,
-      isLoaded: false,
-      items: []
+      itemsError: null,
+      itemsIsLoaded: false,
+      items: [],
+
+      callError: null,
+      callIsLoad: false,
+      call: [],
     }
   }
-
-  componentDidMount() {
+  
+  getItems() {
     fetch("https://a15459-a752.s.d-f.pw/api/get_all_items_of_group/1")
       .then(res => res.json())
       .then(
         (result) => {
           this.setState({
-            isLoaded: true,
+            itemsIsLoaded: true,
             items: result
           });
         },
         (error) => {
           this.setState({
-            isLoaded: true,
+            itemsIsLoaded: true,
             error
           });
         }
       )
   }
 
+  getCall() {
+    fetch("https://a15459-a752.s.d-f.pw/api/get_all_call_schedule")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            callIsLoad: true,
+            call: result
+          });
+        },
+        (error) => {
+          this.setState({
+            callIsLoad: true,
+            error
+          });
+        }
+      )
+  }
+
+  componentDidMount() {
+    this.getItems()
+    this.getCall()
+  }
+
   render() {
-    const { error, isLoaded, items } = this.state;
+    const { itemsError, itemsIsLoaded, items } = this.state;
+    const { callError, callIsLoad, call } = this.state;
+    const DayOfWeek = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
+    const CountSubject = 5
+
 
     onchange = (nativeEvent) => {
 
     }
 
-    if (error) return <Text style={home.mt}>Ошибка: {error.message}</Text>
+    if (itemsError || callError) return <Text style={home.mt}>Ошибка: {itemsError.message}</Text>
 
-    else if (!isLoaded) return <Text style={home.mt}>Загрузка...</Text>
+    else if (!itemsIsLoaded && !callIsLoad) return <Text style={home.mt}>Загрузка...</Text>
 
     else {
       return (
@@ -61,8 +93,29 @@ class Home extends React.Component {
                   style={home.wrap}
                 >
                   {
-                    items.map( item => (
-                      <Text style={home.mt}>{item.Id_Call_Schedule}</Text>
+                    DayOfWeek.map(Day_Of_Week => (
+                      <View style={home.slider_container}>
+                        <Text style={home.day_of_week}>{Day_Of_Week}</Text>
+
+                        {
+                          Array.from({length: CountSubject}, (_, index) => index + 1).map(id => (
+
+                            <View>
+                              <View>
+                                <Text style={home.id_subject}>{id}</Text>
+
+                                {
+                                  items.map(item => {
+                                    if (item.Time_Start == call[id - 1].Time_Start && item.Day_Of_Week == Day_Of_Week) return (<Text>{item.Subject}</Text>)
+                                  })
+                                }
+                              </View>
+
+                              <View style={home.hr}></View>
+                            </View>
+                          ))
+                        }
+                      </View>
                     ))
                   }
                 </ScrollView>
