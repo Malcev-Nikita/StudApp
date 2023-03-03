@@ -29,7 +29,6 @@ const home = StyleSheet.create({
     id_subject: {
         height: 23,
         width: 23,
-        // marginTop: 10,
         backgroundColor: '#1275DD',
         color: '#fff',
         borderRadius: 100,
@@ -45,6 +44,24 @@ const home = StyleSheet.create({
         marginTop: 10,
         marginBottom: 10,
     },  
+
+    subject_container: {
+        flexDirection: "row",
+        alignItems: 'center',
+    },
+
+    subject: {
+        marginLeft: 20,
+        marginTop: 5,
+        marginBottom: 5
+    },
+
+    subject_time: {
+        marginTop: 5,
+        marginBottom: 5,
+        position: 'absolute',
+        right: 0,
+    },
 
     wrap: {
         width: Dimensions.get('window').width,

@@ -61,8 +61,8 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    this.getItems()
     this.getCall()
+    this.getItems()
   }
 
   render() {
@@ -70,11 +70,6 @@ class Home extends React.Component {
     const { callError, callIsLoad, call } = this.state;
     const DayOfWeek = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
     const CountSubject = 5
-
-
-    onchange = (nativeEvent) => {
-
-    }
 
     if (itemsError || callError) return <Text style={home.mt}>Ошибка: {itemsError.message}</Text>
 
@@ -101,12 +96,22 @@ class Home extends React.Component {
                           Array.from({length: CountSubject}, (_, index) => index + 1).map(id => (
 
                             <View>
-                              <View>
+                              <View style={home.subject_container}>
                                 <Text style={home.id_subject}>{id}</Text>
+
+                                <View> 
+                                  {
+                                    items.map(item => {
+                                      if (item.Time_Start == call[id - 1].Time_Start && item.Day_Of_Week == Day_Of_Week) 
+                                        return (<Text key={item.Id} style={home.subject}>{item.Subject}</Text>)
+                                    })
+                                  }
+                                </View>
 
                                 {
                                   items.map(item => {
-                                    if (item.Time_Start == call[id - 1].Time_Start && item.Day_Of_Week == Day_Of_Week) return (<Text>{item.Subject}</Text>)
+                                    if (item.Time_Start == call[id - 1].Time_Start && item.Day_Of_Week == Day_Of_Week) 
+                                      return (<Text key={item.Id} style={home.subject_time}>{item.Time_Start.slice(0,-3)} - {item.Time_End.slice(0,-3)}</Text>)
                                   })
                                 }
                               </View>
