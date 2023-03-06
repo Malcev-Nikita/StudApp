@@ -1,55 +1,37 @@
+import 'react-native-gesture-handler';
+import { useState } from 'react';
+import AppLoading from 'expo-app-loading';
 import { NavigationContainer } from '@react-navigation/native';
-import Feather from 'react-native-vector-icons/Feather';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
+import * as Font from 'expo-font';
 
-import Home from './src/panels/Home';
-import News from './src/panels/News';
-import Settings from './src/panels/Settings';
+import Authorization from './src/panels/Authorization';
+import Registration from './src/panels/Registration';
+import BottomNavigator from './src/panels/BottomNavigator';
 
-const homeName = "Домой";
-const newsName = "Новости";
-const settingsName = "Настройки";
+const Stack = createStackNavigator();
 
-const Tab = createBottomTabNavigator();
+const fonts = () => Font.loadAsync({
+  'nunito-semibold': require('./assets/fonts/Nunito-SemiBold.ttf')
+});
 
 export default function App() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator 
-        screenOptions={{ 
-          headerShown: false,
-          tabBarStyle: {
-            height: 55,
-            position: 'absolute',
-            bottom: 16,
-            right: 25,
-            left: 25,
-            borderRadius: 16 }
-        }}
-        tabBarOptions={{showLabel: false}}
-        initialRouteName={homeName}
-        labeled={false}
-      >
-          <Tab.Screen name={homeName} component={Home} options={{
-            headerShown: false, 
-            tabBarIcon: ({ color }) => (
-              <Feather name="home" color={color} size={26} />
-            ) }} 
-          />
-          <Tab.Screen name={newsName} component={News} options={{
-            headerShown: false, 
-            tabBarIcon: ({ color }) => (
-              <FontAwesome name="newspaper-o" color={color} size={26} />
-            ) }} 
-          />
-          <Tab.Screen name={settingsName} component={Settings} options={{
-            headerShown: false, 
-            tabBarIcon: ({ color }) => (
-              <Feather name="settings" color={color} size={26} />
-            ) }} 
-          />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
+  const [font, setFont] = useState(false);
+
+  if (font) {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Registration" component={Registration} options={{headerShown: false}} />
+          <Stack.Screen name="Authorization" component={Authorization} options={{headerShown: false}} />
+          <Stack.Screen name="BottomNavigator" component={BottomNavigator} options={{headerShown: false}} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
+  else {
+    return (
+      <AppLoading startAsync={fonts} onFinish={() => setFont(true)} onError={(error)=> console.warn(error)} />
+    );
+  }
 }
