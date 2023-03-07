@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as Font from 'expo-font';
 
+import Front from './src/panels/Front';
 import Authorization from './src/panels/Authorization';
 import Registration from './src/panels/Registration';
 import BottomNavigator from './src/panels/BottomNavigator';
@@ -20,8 +21,9 @@ export default function App() {
 
   if (font) {
     return (
-      <NavigationContainer>
+      <NavigationContainer independent={true}>
         <Stack.Navigator>
+          <Stack.Screen name="Front" component={Front} options={{headerShown: false}} />
           <Stack.Screen name="Registration" component={Registration} options={{headerShown: false}} />
           <Stack.Screen name="Authorization" component={Authorization} options={{headerShown: false}} />
           <Stack.Screen name="BottomNavigator" component={BottomNavigator} options={{headerShown: false}} />

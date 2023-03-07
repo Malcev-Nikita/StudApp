@@ -5,11 +5,12 @@ import { TextInput } from 'react-native-gesture-handler';
 import { TextInputMask } from 'react-native-masked-text';
 import DropdownMenu from 'react-native-dropdown-menu';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import Settings from './Settings';
 
-import global from '../style/global_style';
 import input_style from '../style/input_style';
+import button_style from '../style/button_style';
 import registration_style from '../style/registration_style';
 
 
@@ -82,6 +83,15 @@ class Registration extends React.Component {
                             {eye}
                         </TouchableOpacity>
                     </View>
+                </View>
+                <View style={button_style.double_button_container}>
+                    <TouchableOpacity style={button_style.mini_button}  onPress={() => this.props.navigation.navigate('Front')}>
+                        <AntDesign name='arrowleft' color='#1275DD' size={28} />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={button_style.long_button}  onPress={() => this.props.navigation.navigate('BottomNavigator')}>
+                        <Text style={button_style.long_button_test}>Регистрация</Text>
+                    </TouchableOpacity>
                 </View>
             </KeyboardAwareScrollView>
         );

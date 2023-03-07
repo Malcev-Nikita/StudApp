@@ -30,14 +30,14 @@ const input_style = StyleSheet.create({
     input_text: {
         fontFamily: 'nunito-semibold',
         justifyContent: 'flex-start',
-        color: '#fff',
+        color: '#000',
         fontSize: 15,
         marginBottom: 5,
     },
 
     password_container: {
         position: 'absolute',
-        top: 32,
+        top: 35,
         right: 20,
     },
 
