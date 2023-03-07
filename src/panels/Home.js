@@ -81,7 +81,6 @@ class Home extends React.Component {
             <SafeAreaView style={home.container}>
               <View style={home.wrap}>
                 <ScrollView 
-                  // onScroll={({nativeEvent}) => onchange(nativeEvent)}
                   showsHorizontalScrollIndicator={false}
                   pagingEnabled
                   horizontal
