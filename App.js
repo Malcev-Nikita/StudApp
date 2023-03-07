@@ -21,14 +21,16 @@ export default function App() {
 
   if (font) {
     return (
-      <NavigationContainer independent={true}>
-        <Stack.Navigator>
-          <Stack.Screen name="Front" component={Front} options={{headerShown: false}} />
-          <Stack.Screen name="Registration" component={Registration} options={{headerShown: false}} />
-          <Stack.Screen name="Authorization" component={Authorization} options={{headerShown: false}} />
-          <Stack.Screen name="BottomNavigator" component={BottomNavigator} options={{headerShown: false}} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      // <NavigationContainer independent={true}>
+      //   <Stack.Navigator>
+      //     <Stack.Screen name="Front" component={Front} options={{headerShown: false}} />
+      //     <Stack.Screen name="Registration" component={Registration} options={{headerShown: false}} />
+      //     <Stack.Screen name="Authorization" component={Authorization} options={{headerShown: false}} />
+      //     <Stack.Screen name="BottomNavigator" component={BottomNavigator} options={{headerShown: false}} />
+      //   </Stack.Navigator>
+      // </NavigationContainer>
+
+      <BottomNavigator/>
     );
   }
   else {

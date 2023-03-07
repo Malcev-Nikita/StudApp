@@ -101,7 +101,10 @@ class Home extends React.Component {
                                 <View> 
                                   {
                                     items.map(item => {
-                                      if (item.Time_Start == call[id - 1].Time_Start && item.Day_Of_Week == Day_Of_Week) 
+                                      if (item.Time_Start == call[id - 1].Time_Start && item.Day_Of_Week == Day_Of_Week && item.DayOfWeek == 0) 
+                                        return (<Text key={item.Id} style={home.subject}>{item.Subject}</Text>)
+
+                                      else if (item.Time_Start == call[id - 1].Time_Start && item.Day_Of_Week == Day_Of_Week && (item.DayOfWeek == 1 || item.DayOfWeek == 2)) 
                                         return (<Text key={item.Id} style={home.subject}>{item.Subject}</Text>)
                                     })
                                   }
