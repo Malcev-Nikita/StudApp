@@ -51,7 +51,7 @@ const home = StyleSheet.create({
     },
 
     subject: {
-        marginLeft: 20,
+        marginLeft: 10,
         marginTop: 5,
         marginBottom: 5
     },
@@ -61,7 +61,15 @@ const home = StyleSheet.create({
         marginBottom: 5,
         position: 'absolute',
         right: 0,
+        fontSize: 12,
     },
+
+    subject_week: {
+        marginLeft: 15,
+        fontSize: 10,
+        marginTop: -7,
+        marginBottom: -3,
+    },  
 
     wrap: {
         width: Dimensions.get('window').width,
