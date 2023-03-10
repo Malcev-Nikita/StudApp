@@ -124,45 +124,50 @@ function Calendar(items, call, DayOfWeek, CountSubject, countSubjectDay) {
       style={home.wrap}
     >
       {
-        countSubjectDay.map(DayOfWeek => (
-          <View style={home.slider_container}>
-            <Text style={home.day_of_week}>{DayOfWeek.Day_Of_Week}</Text>
+        DayOfWeek.map(DayOfWeek => (
+          countSubjectDay.map(countSubjectDay => {
+            if (countSubjectDay.Day_Of_Week == DayOfWeek) {
+              return (
+                <View style={home.slider_container}>
+                  <Text style={home.day_of_week}>{DayOfWeek}</Text>
+                  {
+                    Array.from({length: CountSubject}, (_, index) => index + 1).map(id => (
+                      <View>
+                        <View style={home.subject_container}>
+                          <Text style={home.id_subject}>{id}</Text>
 
-            {
-              Array.from({length: CountSubject}, (_, index) => index + 1).map(id => (
-                <View>
-                  <View style={home.subject_container}>
-                    <Text style={home.id_subject}>{id}</Text>
+                          <View> 
+                            {
+                              items.map(item => {
+                                if (item.Time_Start == call[id - 1].Time_Start && item.Day_Of_Week == DayOfWeek) 
+                                  return (
+                                    <View>
+                                      <Text key={item.Id} style={home.subject}>{item.Subject}</Text>
+                                      {item.Week_Number != 0 ? <Text style={home.subject_week}>{item.Week_Number + " неделя"}</Text> : ("")}
+                                    </View>
+                                  )
+                              })
+                            }
+                          </View>
 
-                    <View> 
-                      {
-                        items.map(item => {
-                          if (item.Time_Start == call[id - 1].Time_Start && item.Day_Of_Week == DayOfWeek.Day_Of_Week) 
-                            return (
-                              <View>
-                                <Text key={item.Id} style={home.subject}>{item.Subject}</Text>
-                                {item.Week_Number != 0 ? <Text style={home.subject_week}>{item.Week_Number + " неделя"}</Text> : ("")}
-                              </View>
-                            )
-                        })
-                      }
-                    </View>
+                          {
+                            items.map(item => {
+                              if (item.Time_Start == call[id - 1].Time_Start && item.Day_Of_Week == DayOfWeek) 
+                                return (
+                                  <Text key={item.Id} style={home.subject_time}>{item.Time_Start.slice(0,-3)} - {item.Time_End.slice(0,-3)}</Text>
+                                )
+                            })
+                          }
+                        </View>
 
-                    {
-                      items.map(item => {
-                        if (item.Time_Start == call[id - 1].Time_Start && item.Day_Of_Week == Day_Of_Week) 
-                          return (
-                            <Text key={item.Id} style={home.subject_time}>{item.Time_Start.slice(0,-3)} - {item.Time_End.slice(0,-3)}</Text>
-                          )
-                      })
-                    }
-                  </View>
-
-                  <View style={home.hr}></View>
+                        <View style={home.hr}></View>
+                      </View>
+                    ))
+                  }
                 </View>
-              ))
+              )
             }
-          </View>
+          })
         ))
       }
     </ScrollView>

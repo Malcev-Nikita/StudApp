@@ -20,6 +20,7 @@
     "react-native": "0.70.5",
     "react-native-dropdown-menu": "^2.0.0",
     "react-native-gesture-handler": "^2.9.0",
+    "react-native-imei": "^0.2.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-masked-text": "^1.13.0",
     "react-native-paper": "^5.2.0",
