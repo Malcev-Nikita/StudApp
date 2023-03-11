@@ -6,6 +6,7 @@ import Settings from './Settings';
 
 import global from '../style/global_style';
 import home from '../style/home_style';
+import error_style from '../style/error_style';
 
 class Home extends React.Component {
   constructor(props) {
@@ -97,7 +98,12 @@ class Home extends React.Component {
     const DayOfWeek = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
     const CountSubject = 5
 
-    if (itemsError || callError || countSubjectDayError) return <Text style={home.mt}>Ошибка: {itemsError.message}</Text>
+    if (itemsError || callError || countSubjectDayError) return (
+      <View style={error_style.error_container}>
+        <Text style={error_style.error_header}>Ошибка</Text>
+        <Text style={error_style.error_desc}>Нет подключения к интернету, для получения информации нужно подключение к интернету</Text>
+      </View>
+    )
 
     else if (!itemsIsLoaded || !callIsLoad || !countSubjectDayIsLoad) return <Text style={home.mt}>Загрузка...</Text>
 
