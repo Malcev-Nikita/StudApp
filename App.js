@@ -1,16 +1,12 @@
 import 'react-native-gesture-handler';
 import { useState } from 'react';
 import AppLoading from 'expo-app-loading';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import * as Font from 'expo-font';
 
-import Front from './src/panels/Front';
-import Authorization from './src/panels/Authorization';
-import Registration from './src/panels/Registration';
+import * as Device from 'expo-device';
+
 import BottomNavigator from './src/panels/BottomNavigator';
 
-const Stack = createStackNavigator();
 
 const fonts = () => Font.loadAsync({
   'nunito-semibold': require('./assets/fonts/Nunito-SemiBold.ttf')
@@ -19,17 +15,10 @@ const fonts = () => Font.loadAsync({
 export default function App() {
   const [font, setFont] = useState(false);
 
+  console.log(Device.brand);
+
   if (font) {
     return (
-      // <NavigationContainer independent={true}>
-      //   <Stack.Navigator>
-      //     <Stack.Screen name="Front" component={Front} options={{headerShown: false}} />
-      //     <Stack.Screen name="Registration" component={Registration} options={{headerShown: false}} />
-      //     <Stack.Screen name="Authorization" component={Authorization} options={{headerShown: false}} />
-      //     <Stack.Screen name="BottomNavigator" component={BottomNavigator} options={{headerShown: false}} />
-      //   </Stack.Navigator>
-      // </NavigationContainer>
-
       <BottomNavigator/>
     );
   }
