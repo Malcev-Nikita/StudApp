@@ -5,12 +5,10 @@ class InfoSubject extends React.Component {
     render() {
         return (
             <View>
-                
+
             </View>
         )
     }
 }
 
-export default InfoSubject
-    // return <InfoSubject navigation={useNavigation()} />
-// };
+export default InfoSubject;
