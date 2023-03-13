@@ -1,11 +1,11 @@
 import 'react-native-gesture-handler';
 import { useState } from 'react';
+import { View } from 'react-native';
 import AppLoading from 'expo-app-loading';
 import * as Font from 'expo-font';
 
-import * as Device from 'expo-device';
-
-import BottomNavigator from './src/panels/BottomNavigator';
+import BottomNavigator from './src/pages/BottomNavigator';
+import InfoSubject from './src/pages/InfoSubject';
 
 
 const fonts = () => Font.loadAsync({
@@ -15,11 +15,14 @@ const fonts = () => Font.loadAsync({
 export default function App() {
   const [font, setFont] = useState(false);
 
-  console.log(Device.brand);
-
   if (font) {
     return (
-      <BottomNavigator/>
+      // <View>
+        <BottomNavigator />
+        // <InfoSubject/>
+        // <NavigationSubject /> 
+      // </View>
+
     );
   }
   else {
